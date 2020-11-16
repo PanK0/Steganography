@@ -2,6 +2,10 @@
 import sys
 import math
 from PIL import Image
+from Crypto.Cipher import AES
+from Crypto.Util.Padding import pad
+from Crypto.Util.Padding import unpad
+from base64 import b64encode
 
 MAX_BIT_LEN = 1024
 
@@ -199,13 +203,7 @@ def main() :
 			return -1
 
 		# Put the text i
-		ret = Encrypt(image_file, plaintext)
-		try :
-			plaintext_file.close()
-		except :
-			return -1
-		if (ret == -1) :
-			return -1
+		Encrypt(image_file, plaintext)
 		print ("Encryption done")
 
 	elif ('-decr' in argv) :
