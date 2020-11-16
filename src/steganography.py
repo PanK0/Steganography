@@ -116,6 +116,10 @@ def Encrypt(image_file, plaintext) :
 	# Getting information about the image
 	# Pixel (x, y) is at position pixel_values[width*y + x]
 	width, height = image.size
+	if (len(plaintext) > ((width * height) -width)) :
+		print ("Plaintext too long: operation aborted.")
+		print ("Please choose a plaintext shorter than", ((width * height) -width), " chars")
+		return -1
 	pixel_values = list(image.getdata())
 
 	# Change the values in the pixel array to encrypted ones
@@ -195,12 +199,14 @@ def main() :
 			return -1
 
 		# Put the text i
-		Encrypt(image_file, plaintext)
-		print ("Encryption done")
+		ret = Encrypt(image_file, plaintext)
 		try :
 			plaintext_file.close()
 		except :
 			return -1
+		if (ret == -1) :
+			return -1
+		print ("Encryption done")
 
 	elif ('-decr' in argv) :
 		image_file = argv[argv.index('-decr') +1]
