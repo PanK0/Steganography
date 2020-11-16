@@ -63,7 +63,7 @@ def Encrypt_PixelArray(pixel_array, plaintext, image_size) :
 
 
 '''
-Given the pizel array and the size of the image, returns the plaintext message
+Given the pixel array and the size of the image, returns the plaintext message
 '''
 def Decrypt_PixelArray(pixel_array, image_size) :
 	width, height = image_size
